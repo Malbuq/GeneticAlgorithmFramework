@@ -1,6 +1,6 @@
 package Framework.Test;
 
-import Framework.GeneInterface;
+import Framework.PopulationComponents.GeneInterface;
 
 public class Gene<T extends Number> implements GeneInterface<T> {
     private T value;

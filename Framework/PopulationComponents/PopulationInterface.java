@@ -1,4 +1,4 @@
-package PopulationComponents;
+package Framework.PopulationComponents;
 
 public interface PopulationInterface<T extends Number> {
     public int getSize();

@@ -1,4 +1,5 @@
-package Framework;
+package Framework.PopulationComponents;
+
 public interface ChromosomeInterface<T extends Number> {
     public int getLength();
     public void setLength(int length);

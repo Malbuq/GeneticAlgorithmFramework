@@ -1,4 +1,4 @@
-package Framework;
+package Framework.PopulationComponents;
 public interface GeneInterface<T extends Number> {
     public void setGene(T value);
     public T getGene();

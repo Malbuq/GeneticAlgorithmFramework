@@ -1,8 +1,8 @@
 package Framework.Strategies;
 
-import Framework.ChromosomeInterface;
-import Framework.GeneInterface;
-import Framework.PopulationInterface;
+import Framework.PopulationComponents.ChromosomeInterface;
+import Framework.PopulationComponents.GeneInterface;
+import Framework.PopulationComponents.PopulationInterface;
 
 public interface FitnessEvaluatorStrategy<T extends Number> {
     public float calculatePopulationFitness(PopulationInterface<T> population);

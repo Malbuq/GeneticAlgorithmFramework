@@ -1,7 +1,7 @@
 package Framework.Test;
 
-import Framework.ChromosomeInterface;
-import Framework.GeneInterface;
+import Framework.PopulationComponents.ChromosomeInterface;
+import Framework.PopulationComponents.GeneInterface;
 
 public class Chromosome<T extends Number> implements ChromosomeInterface<T> {
     private GeneInterface<T>[] genes;

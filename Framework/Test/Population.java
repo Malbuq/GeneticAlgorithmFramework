@@ -3,8 +3,8 @@ package Framework.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import Framework.ChromosomeInterface;
-import Framework.PopulationInterface;
+import Framework.PopulationComponents.ChromosomeInterface;
+import Framework.PopulationComponents.PopulationInterface;
 
 public class Population<T extends Number> implements PopulationInterface<T> {
     private List<ChromosomeInterface<T>> chromosomes;
