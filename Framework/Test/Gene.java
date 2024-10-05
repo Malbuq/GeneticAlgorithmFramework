@@ -1,5 +1,4 @@
 package Framework.Test;
-import java.util.Random;
 
 import Framework.GeneInterface;
 

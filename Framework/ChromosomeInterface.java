@@ -8,4 +8,11 @@ public interface ChromosomeInterface<T extends Number> {
 
     public GeneInterface<T> getGeneAt(int index);
     public void setGeneAt(int index, GeneInterface<T> gene);
+
+    public float getFitness();
+    public void setFitness();
+
+    public float getProbability();
+    public void computeProbability();
+
 }
