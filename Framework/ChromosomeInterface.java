@@ -1,7 +1,7 @@
 package Framework;
 public interface ChromosomeInterface<T> {
     public int getLength();
-    public void setLength();
+    public void setLength(int length);
     
     public GeneInterface<T>[] getChromosome();
     public void setChromosome(GeneInterface<T>[] genes);
