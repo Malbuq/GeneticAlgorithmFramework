@@ -1,9 +1,26 @@
 package Framework.PopulationComponents;
 
-public interface PopulationInterface<T extends Number> {
+public interface PopulationInterface {
     public int getSize();
+
     public void setSize(int size);
 
-    public void addChromosome(ChromosomeInterface<T> chromosome);
-    public ChromosomeInterface<T> getChromosomeAt(int index);
+    public ChromosomeInterface getChromosomeAt(int index);
+
+    public void setChromosomeAt(int index, ChromosomeInterface geneValue);
+
+    public int getRightDomainBoundarie();
+
+    public void setRightDomainBoundarie(int rightDomainBoundarie);
+
+    public int getleftDomainBoundarie();
+
+    public void setLeftDomainBoundarie(int leftDomainBoundarie);
+
+    public float getFitness();
+
+    public void setFitness(float fitness);
+
+    public void generateInitialPopulation(int chromosomeLength);
+
 }

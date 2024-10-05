@@ -2,6 +2,6 @@ package Framework.Strategies;
 
 import Framework.PopulationComponents.PopulationInterface;
 
-public interface MutatePopulationStrategy<T extends Number> {
-    public PopulationInterface<T> mutate(PopulationInterface<T> population, float mutateProbability);
+public interface MutatePopulationStrategy {
+    public PopulationInterface mutate(PopulationInterface population, float mutateProbability);
 }
