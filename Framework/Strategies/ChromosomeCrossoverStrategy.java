@@ -2,6 +2,6 @@ package Framework.Strategies;
 
 import Framework.PopulationComponents.PopulationInterface;
 
-public interface ChromosomeCrossoverStrategy<T extends Number> {
-    public PopulationInterface<T> crossover(PopulationInterface<T> population, float crossoverProbability);
+public interface ChromosomeCrossoverStrategy {
+    public PopulationInterface crossover(PopulationInterface population, float crossoverProbability);
 }
