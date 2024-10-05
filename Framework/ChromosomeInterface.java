@@ -13,6 +13,6 @@ public interface ChromosomeInterface<T extends Number> {
     public void setFitness();
 
     public float getProbability();
-    public void computeProbability();
+    public void setProbability();
 
 }

@@ -1,7 +1,4 @@
-import Framework.ChromosomeInterface;
-import Framework.GeneInterface;
-import Framework.PopulationInterface;
-
+package Framework;
 public interface FitnessEvaluatorStrategy<T extends Number> {
     public float calculatePopulationFitness(PopulationInterface<T> population);
     public float calculateChromosomeFitness(ChromosomeInterface<T> chromosome);
