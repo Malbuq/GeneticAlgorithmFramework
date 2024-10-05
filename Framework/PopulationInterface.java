@@ -1,6 +1,6 @@
 package Framework;
 
-public interface PopulationInterface<T> {
+public interface PopulationInterface<T extends Number> {
     public int getSize();
     public void setSize(int size);
 

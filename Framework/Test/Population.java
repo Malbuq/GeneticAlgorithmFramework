@@ -6,7 +6,7 @@ import java.util.List;
 import Framework.ChromosomeInterface;
 import Framework.PopulationInterface;
 
-public class Population<T> implements PopulationInterface<T> {
+public class Population<T extends Number> implements PopulationInterface<T> {
     private List<ChromosomeInterface<T>> chromosomes;
     private int size;
 

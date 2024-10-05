@@ -1,5 +1,5 @@
 package Framework;
-public interface ChromosomeInterface<T> {
+public interface ChromosomeInterface<T extends Number> {
     public int getLength();
     public void setLength(int length);
     

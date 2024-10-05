@@ -12,11 +12,17 @@ public class Main {
         gene2.setGene(8);
         gene2.setLeftDomainBoundarie(0);
         gene2.setRightDomainBoundarie(10);
+        
+        Gene<Integer> gene3 = new Gene<>();
+        gene3.setLeftDomainBoundarie(-10);
+        gene3.setRightDomainBoundarie(10);
+        gene3.randomlyGenerateGene();
 
         // Create a chromosome and set genes
-        Chromosome<Integer> chromosome = new Chromosome<>(2);
+        Chromosome<Integer> chromosome = new Chromosome<>(3);
         chromosome.setGeneAt(0, gene1);
         chromosome.setGeneAt(1, gene2);
+        chromosome.setGeneAt(2, gene3);
 
         // Print chromosome
         System.out.println(chromosome);

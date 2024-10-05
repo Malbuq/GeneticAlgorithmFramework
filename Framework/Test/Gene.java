@@ -1,20 +1,27 @@
 package Framework.Test;
+import java.util.Random;
 
 import Framework.GeneInterface;
 
-public class Gene<T> implements GeneInterface<T> {
-    private T geneValue;
+public class Gene<T extends Number> implements GeneInterface<T> {
+    private T value;
     private int leftDomainBoundarie;
     private int rightDomainBoundarie;
-
+    
     @Override
-    public void setGene(T geneValue) {
-        this.geneValue = geneValue;
+    public void setGene(T value) {
+        this.value = value;
     }
-
+    
     @Override
     public T getGene() {
-        return geneValue;
+        return value;
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public void randomlyGenerateGene() {
+        this.value = (T) Integer.valueOf(leftDomainBoundarie + (int) (Math.random() * (rightDomainBoundarie - leftDomainBoundarie)));
     }
 
     @Override
@@ -39,6 +46,8 @@ public class Gene<T> implements GeneInterface<T> {
 
     @Override
     public String toString() {
-        return "Gene [Value=" + geneValue + ", LeftBound=" + leftDomainBoundarie + ", RightBound=" + rightDomainBoundarie + "]";
+        return "Gene [Value=" + value + ", LeftBound=" + leftDomainBoundarie + ", RightBound=" + rightDomainBoundarie + "]";
     }
+
 }
+

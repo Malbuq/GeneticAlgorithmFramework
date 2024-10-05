@@ -3,7 +3,7 @@ package Framework.Test;
 import Framework.ChromosomeInterface;
 import Framework.GeneInterface;
 
-public class Chromosome<T> implements ChromosomeInterface<T> {
+public class Chromosome<T extends Number> implements ChromosomeInterface<T> {
     private GeneInterface<T>[] genes;
     private int length;
 
