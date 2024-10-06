@@ -9,6 +9,8 @@ public interface PopulationInterface {
 
     public void setChromosomeAt(int index, ChromosomeInterface geneValue);
 
+    public void addChromosome(ChromosomeInterface chromosome);
+
     public int getRightDomainBoundarie();
 
     public void setRightDomainBoundarie(int rightDomainBoundarie);

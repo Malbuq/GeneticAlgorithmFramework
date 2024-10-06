@@ -6,6 +6,7 @@ import Framework.PopulationComponents.PopulationInterface;
 public class Population implements PopulationInterface {
     private int size;
     private ChromosomeInterface[] chromosomes;
+    private int populationTail;
     private int leftDomainBoundarie;
     private int rightDomainBoundarie;
     private float fitness;
@@ -92,6 +93,15 @@ public class Population implements PopulationInterface {
 
         sb.append("]");
         return sb.toString();
+    }
+
+    @Override
+    public void addChromosome(ChromosomeInterface chromosome) {
+        if (populationTail >= this.size) {
+            return;
+        }
+        chromosomes[populationTail] = chromosome;
+        populationTail++;
     }
 
 }

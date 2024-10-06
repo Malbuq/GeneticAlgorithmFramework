@@ -23,11 +23,11 @@ public class ProbabilityProportionalSelectorStrategy implements SelectorStrategy
             ChromosomeInterface chromosome = currentPopulation.getChromosomeAt(randomChomosomeIndex);
             randomProbability = Math.random();
 
-            if (randomProbability > chromosome.getProbability()) {
+            if (randomProbability < chromosome.getProbability()) {
                 continue;
             }
 
-            newPopulation.setChromosomeAt(newPopulationPointer, chromosome);
+            newPopulation.addChromosome(chromosome);
             newPopulationPointer++;
             
         }

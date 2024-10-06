@@ -24,8 +24,7 @@ public class OnePointCrossoverStrategy implements ChromosomeCrossoverStrategy {
         if (isPopulationOdd) {
             randomChomosomeIndex = random.nextInt(populationSize);
             ChromosomeInterface randomChromosome = currentPopulation.getChromosomeAt(randomChomosomeIndex);
-            newPopulation.setChromosomeAt(newPopulationPointer, randomChromosome);
-            newPopulationPointer++;
+            newPopulation.addChromosome(randomChromosome);
         }
 
         while (newPopulationPointer < populationSize) {
@@ -40,36 +39,33 @@ public class OnePointCrossoverStrategy implements ChromosomeCrossoverStrategy {
             dontCrossover = randomProbability > crossoverProbability;
 
             if (dontCrossover) {
-                newPopulation.setChromosomeAt(newPopulationPointer, chromosomeFather);
-                newPopulationPointer++;
-
-                newPopulation.setChromosomeAt(newPopulationPointer, chromosomeMother);
+                newPopulation.addChromosome(chromosomeFather);
+                newPopulation.addChromosome(chromosomeMother);
                 newPopulationPointer++;
                 continue;
             }
 
-            
             ChromosomeInterface firstChild = this.crossoverChromosomes(chromosomeFather, chromosomeMother);
             ChromosomeInterface secondChild = this.crossoverChromosomes(chromosomeMother, chromosomeFather);
-            
-            newPopulation.setChromosomeAt(newPopulationPointer, firstChild);
-            newPopulationPointer++;
-            
-            newPopulation.setChromosomeAt(newPopulationPointer, secondChild);
-            newPopulationPointer++;
+
+            newPopulation.addChromosome(firstChild);
+            newPopulation.addChromosome(secondChild);
+
+            newPopulationPointer = newPopulationPointer + 2;
         }
-        
+
         return newPopulation;
     }
-    
-    public ChromosomeInterface crossoverChromosomes(ChromosomeInterface chromosomeLeft, ChromosomeInterface chromosomeRight) {
+
+    public ChromosomeInterface crossoverChromosomes(ChromosomeInterface chromosomeLeft,
+            ChromosomeInterface chromosomeRight) {
         Random random = new Random();
         int chromosomeLength = chromosomeLeft.getLength();
         ChromosomeInterface child = new Chromosome(chromosomeLength);
         int crossoverPoint = random.nextInt(chromosomeLength);
 
-        for(int geneIndex = 0; geneIndex < chromosomeLength; geneIndex++) {
-            if(geneIndex < crossoverPoint) {
+        for (int geneIndex = 0; geneIndex < chromosomeLength; geneIndex++) {
+            if (geneIndex < crossoverPoint) {
                 child.setGeneAt(geneIndex, chromosomeLeft.getGeneAt(geneIndex));
                 continue;
             }
