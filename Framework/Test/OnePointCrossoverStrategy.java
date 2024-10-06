@@ -13,6 +13,7 @@ public class OnePointCrossoverStrategy implements ChromosomeCrossoverStrategy {
         int populationSize = currentPopulation.getSize();
         Population newPopulation = new Population(populationSize, currentPopulation.getleftDomainBoundarie(),
                 currentPopulation.getRightDomainBoundarie());
+        newPopulation.setFitness(currentPopulation.getFitness());
         int randomChomosomeIndex;
         Random random = new Random();
         int newPopulationPointer = 0;

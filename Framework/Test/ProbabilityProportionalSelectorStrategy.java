@@ -12,6 +12,7 @@ public class ProbabilityProportionalSelectorStrategy implements SelectorStrategy
     public PopulationInterface selectNextGeneration(PopulationInterface currentPopulation) {
         int populationSize = currentPopulation.getSize();
         Population newPopulation = new Population(populationSize, currentPopulation.getleftDomainBoundarie(), currentPopulation.getRightDomainBoundarie());
+        newPopulation.setFitness(currentPopulation.getFitness());
         int newPopulationPointer = 0;
         int randomChomosomeIndex;
         double randomProbability = 0;
