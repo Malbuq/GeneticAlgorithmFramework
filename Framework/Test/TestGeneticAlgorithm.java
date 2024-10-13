@@ -8,15 +8,15 @@ public class TestGeneticAlgorithm {
     public static void main(String[] args) {
         int LEFT_BOUND = -100;
         int RIGHT_BOUND = 100;
-        int POPULATION_SIZE = 1000;
+        int POPULATION_SIZE = 100;
         int CHROMOSOME_LENGTH = 30;
         float CROSSOVER_PROBABILITY = 0.8f;
         float MUTATION_PROBABILITY = 0.01f;
-        int GENERATIONS = 1000;
+        int GENERATIONS = 100000;
 
         FitnessEvaluatorStrategy sphereEvaluator = new SphereEvaluatorStrategy();
         MatingProbabilityCalculatorStrategy complementaryMatingProbability = new ComplementaryMatingProbabilityStrategy();
-        SelectorStrategy fitnessProportionalSelector = new ProbabilityProportionalSelectorStrategy();
+        SelectorStrategy fitnessProportionalSelector = new TournamentSelectorStrategy();
         ChromosomeCrossoverStrategy onePointCrossover = new OnePointCrossoverStrategy();
         MutatePopulationStrategy simpleMutation = new SimpleMutatatePopulationStrategy();
 
@@ -42,7 +42,7 @@ public class TestGeneticAlgorithm {
             population = (Population) onePointCrossover.crossoverPopulation(population, CROSSOVER_PROBABILITY);
 
             simpleMutation.mutate(population, MUTATION_PROBABILITY);
+            System.out.println(population.getFitness());
         }
-        System.out.println(population.getFitness());
     }
 }
