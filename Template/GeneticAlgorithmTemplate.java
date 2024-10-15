@@ -1,5 +1,8 @@
 package Template;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Framework.PopulationComponents.ChromosomeInterface;
 import Framework.PopulationComponents.PopulationInterface;
 import Framework.Strategies.ChromosomeCrossoverStrategy;
@@ -9,13 +12,16 @@ import Framework.Strategies.MutatePopulationStrategy;
 import Framework.Strategies.SelectorStrategy;
 import Framework.Test.Chromosome;
 import Framework.Test.Population;
+import Observer.Observer;
+import Observer.Subject;
 
-public abstract class GeneticAlgorithmTemplate {
+public abstract class GeneticAlgorithmTemplate implements Subject {
     private int populationSize;
     private int chromosomeLength;
     private int leftDomainBound;
     private int rightDomainBound;
     private PopulationInterface population;
+    private List<Observer> observers;
 
     public GeneticAlgorithmTemplate(int populationSize, int chromosomeLength, int leftDomainBound,
             int rightDomainBound) {
@@ -23,6 +29,7 @@ public abstract class GeneticAlgorithmTemplate {
         this.chromosomeLength = chromosomeLength;
         this.leftDomainBound = leftDomainBound;
         this.rightDomainBound = rightDomainBound;
+        this.observers = new ArrayList<>();
     }
 
     public void generateInitialPopulation() {
@@ -60,23 +67,24 @@ public abstract class GeneticAlgorithmTemplate {
         mutationStrategy.mutate(population, mutationProbability);
     }
 
-    public ChromosomeInterface selectBestChromosomeFromPopulation() {
+    public ChromosomeInterface selectBestChromosomeFromPopulation() throws InterruptedException {
         ChromosomeInterface bestChromosome = population.getChromosomeAt(0);
 
         for (int geneIndex = 1; geneIndex < population.getSize(); geneIndex++) {
             ChromosomeInterface currenteChromosome = population.getChromosomeAt(geneIndex);
             if (bestChromosome.getFitness() > currenteChromosome.getFitness()) {
                 bestChromosome = currenteChromosome;
+                GeneticAlgorithmTemplate.this.notificarObservers(currenteChromosome.getFitness(), geneIndex);
             }
         }
-
+        Thread.sleep(1000);
         return bestChromosome;
     }
 
     public void run(int numberGenerations, FitnessEvaluatorStrategy fitnessEvaluator,
             MatingProbabilityCalculatorStrategy matingProbabilityStrategy, SelectorStrategy fitnessSelectorStrategy,
             ChromosomeCrossoverStrategy crossoverStrategy, float crossoverProbability,
-            MutatePopulationStrategy mutationStrategy, float mutationProbability) {
+            MutatePopulationStrategy mutationStrategy, float mutationProbability) throws InterruptedException {
         generateInitialPopulation();
         for (int iteration = 0; iteration < numberGenerations; iteration++) {
             evaluatePopulation(fitnessEvaluator);
@@ -85,6 +93,23 @@ public abstract class GeneticAlgorithmTemplate {
             createNextGeneration(fitnessSelectorStrategy);
             crossoverPopulation(crossoverStrategy, crossoverProbability);
             mutatePopulation(mutationStrategy, mutationProbability);
+        }
+    }
+
+    @Override
+    public void registrarObserver(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public void removerObserver(Observer observer) {
+        this.observers.remove(observer);
+    }
+
+    @Override
+    public void notificarObservers(Float fitness, int iteration) {
+        for (Observer observer : observers) {
+            observer.atualizar(fitness, iteration);
         }
     }
 }

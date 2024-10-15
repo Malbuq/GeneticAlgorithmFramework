@@ -1,13 +1,15 @@
 package Framework.Test;
 
-import Framework.PopulationComponents.*;
+import javax.swing.WindowConstants;
+
 import Framework.Strategies.*;
+import Observer.Graphic;
 import Template.GeneticAlgorithm;
 import Template.GeneticAlgorithmTemplate;
 
 public class TestGeneticAlgorithm {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         int LEFT_BOUND = -100;
         int RIGHT_BOUND = 100;
         int POPULATION_SIZE = 100;
@@ -24,6 +26,13 @@ public class TestGeneticAlgorithm {
 
         GeneticAlgorithmTemplate geneticAlgorithm = new GeneticAlgorithm(POPULATION_SIZE, CHROMOSOME_LENGTH, LEFT_BOUND,
                 RIGHT_BOUND);
+        Graphic graphic = new Graphic();
+        graphic.setSize(800, 600);
+        graphic.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        graphic.setVisible(true);
+
+
+        geneticAlgorithm.registrarObserver(graphic);
 
         geneticAlgorithm.run(GENERATIONS, sphereEvaluator, complementaryMatingProbability, tournamentFitnessSelector,
                 onePointCrossover, CROSSOVER_PROBABILITY, simpleMutation, MUTATION_PROBABILITY);
